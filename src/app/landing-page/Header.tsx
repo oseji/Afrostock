@@ -11,7 +11,7 @@ const Header = () => {
 				<span className=" navText">about us</span>
 				<span className=" navText">sign in</span>
 
-				<button className=" capitalize text-white rounded-4xl px-6 py-4 bg-[#7B4B3A] cursor-pointer border-2 border-[#7B4B3A] hover:bg-transparent hover:scale-105 hover:text-[#7B4B3A] transition ease-in-out duration-200">
+				<button className=" capitalize text-white rounded-4xl px-6 py-4 bg-[#7B4B3A] cursor-pointer border-2 border-[#7B4B3A] hover:bg-transparent hover:scale-105 hover:text-[#7B4B3A] transition ease-in-out duration-500">
 					sign up
 				</button>
 			</nav>

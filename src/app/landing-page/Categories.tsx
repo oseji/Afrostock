@@ -76,7 +76,7 @@ const Categories = () => {
 									alt={`Image ${idx}`}
 									width={500}
 									height={700}
-									className="w-full h-auto object-cover transition-transform duration-300 ease-in-out hover:scale-110"
+									className="w-full h-auto object-cover transition duration-500 ease-in-out hover:scale-110"
 								/>
 							</div>
 						))}
@@ -97,7 +97,7 @@ const Categories = () => {
 						invitation for African photographers to upload their work
 					</p>
 
-					<button className=" bg-white rounded-4xl px-6 py-2 text-black font-semibold capitalize cursor-pointer hover:scale-110 transition ease-in-out duration-200">
+					<button className=" bg-white rounded-4xl px-6 py-2 text-black font-semibold capitalize cursor-pointer hover:scale-110 transition ease-in-out duration-500">
 						Join as a Creator
 					</button>
 				</div>

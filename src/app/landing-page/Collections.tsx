@@ -39,7 +39,7 @@ const Collections = () => {
 			<div className=" flex flex-row items-center justify-center gap-10">
 				{boxContent.map((box, index) => (
 					<div
-						className="collectionsBox relative overflow-hidden rounded-4xl group cursor-pointer"
+						className="collectionsBox relative overflow-hidden rounded-4xl"
 						key={index}
 					>
 						{/* Background Image */}
