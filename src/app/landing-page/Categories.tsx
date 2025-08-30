@@ -19,6 +19,30 @@ import fifteen from "../assets/categories/15.svg";
 import twoGirls from "../assets/2 girls.svg";
 
 const Categories = () => {
+	const images = [
+		one,
+		two,
+		three,
+		four,
+		five,
+		six,
+		seven,
+		eight,
+		nine,
+		ten,
+		eleven,
+		twelve,
+		thirteen,
+		fourteen,
+		fifteen,
+	];
+
+	const chunkedImages = [
+		images.slice(0, 5),
+		images.slice(5, 11),
+		images.slice(11, 15),
+	];
+
 	return (
 		<div className=" sectionPadding">
 			<h1 className=" sectionHeading">Free Afro booth images </h1>
@@ -37,6 +61,27 @@ const Categories = () => {
 					<span className="categoryFilter">Education</span>
 					<span className="categoryFilter">Sports</span>
 				</div>
+			</div>
+
+			<div className="grid grid-cols-3 gap-6 mt-8 mb-16">
+				{chunkedImages.map((column, colIdx) => (
+					<div key={colIdx} className="flex flex-col gap-6">
+						{column.map((img, idx) => (
+							<div
+								key={idx}
+								className="relative mb-4 overflow-hidden rounded-4xl"
+							>
+								<Image
+									src={img}
+									alt={`Image ${idx}`}
+									width={500}
+									height={700}
+									className="w-full h-auto object-cover transition-transform duration-300 ease-in-out hover:scale-110"
+								/>
+							</div>
+						))}
+					</div>
+				))}
 			</div>
 
 			<div
