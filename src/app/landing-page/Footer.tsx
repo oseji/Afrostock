@@ -54,7 +54,7 @@ const Footer = () => {
 						</div>
 					</div>
 
-					<button className=" w-fit ml-auto mt-10 cursor-pointer rounded-4xl px-6 py-2 border-[#7B4B3A] border-2 flex flex-row items-center gap-2 justify-center capitalize font-semibold text-[#7B4B3A]">
+					<button className=" w-fit ml-auto mt-10 cursor-pointer rounded-4xl px-6 py-2 border-[#7B4B3A] border-2 flex flex-row items-center gap-2 justify-center capitalize font-semibold text-[#7B4B3A] transition ease-in-out duration-500 hover:scale-105">
 						<Image src={upArrow} alt="Up Arrow" />
 
 						<span>back to the top</span>

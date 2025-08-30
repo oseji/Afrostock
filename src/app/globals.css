@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+	@apply scroll-smooth;
+}
+
 /* general */
 .sectionHeading {
 	@apply mb-6 text-5xl capitalize;
