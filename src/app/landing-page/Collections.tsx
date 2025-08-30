@@ -1,8 +1,4 @@
 import Image from "next/image";
-// import people from "../assets/people.svg";
-// import lifestyle from "../assets/lifestyle.svg";
-// import art from "../assets/art.svg";
-// import culture from "../assets/culture.svg";
 
 const Collections = () => {
 	const boxContent = [
@@ -43,7 +39,7 @@ const Collections = () => {
 			<div className=" flex flex-row items-center justify-center gap-10">
 				{boxContent.map((box, index) => (
 					<div
-						className="collectionsBox relative overflow-hidden rounded-xl group cursor-pointer"
+						className="collectionsBox relative overflow-hidden rounded-4xl group cursor-pointer"
 						key={index}
 					>
 						{/* Background Image */}
