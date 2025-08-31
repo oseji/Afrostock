@@ -12,6 +12,8 @@ const Collections = () => {
 	const headingRef = useRef<HTMLHeadingElement>(null);
 	const subTextRef = useRef<HTMLParagraphElement>(null);
 	const bottomParagraphRef = useRef<HTMLParagraphElement>(null);
+	const boxHeadingRefs = useRef<(HTMLHeadingElement | null)[]>([]);
+	const boxTextRefs = useRef<(HTMLParagraphElement | null)[]>([]);
 
 	const boxContent = [
 		{
@@ -113,12 +115,56 @@ const Collections = () => {
 
 					scrollTrigger: {
 						trigger: bottomParagraphRef.current,
-						start: "top 80%",
-						end: "top 50%",
+						start: "top 70%",
+						end: "top 40%",
 						scrub: 3,
 					},
 				}
 			);
+		}
+
+		// box headings
+		if (boxHeadingRefs.current && boxHeadingRefs.current.length > 0) {
+			boxHeadingRefs.current.forEach((ref) => {
+				if (ref) {
+					gsap.fromTo(
+						ref,
+						{ x: -150 },
+						{
+							x: 0,
+							transformOrigin: "center",
+							scrollTrigger: {
+								trigger: ref,
+								start: "top bottom",
+								end: "top 80%",
+								scrub: 1.5,
+							},
+						}
+					);
+				}
+			});
+		}
+
+		// box text
+		if (boxTextRefs.current && boxTextRefs.current.length > 0) {
+			boxTextRefs.current.forEach((ref) => {
+				if (ref) {
+					gsap.fromTo(
+						ref,
+						{ x: 350 },
+						{
+							x: 0,
+							transformOrigin: "center",
+							scrollTrigger: {
+								trigger: ref,
+								start: "top bottom",
+								end: "top 80%",
+								scrub: 1.5,
+							},
+						}
+					);
+				}
+			});
 		}
 	}, []);
 
@@ -152,9 +198,23 @@ const Collections = () => {
 
 						{/* Content */}
 						<div className="absolute inset-0 flex flex-col justify-end  p-4 z-10">
-							<h1 className="collectionsBoxHeading ">{box.title}</h1>
+							<h1
+								className="collectionsBoxHeading"
+								ref={(el) => {
+									boxHeadingRefs.current[index] = el;
+								}}
+							>
+								{box.title}
+							</h1>
 
-							<p>{box.description}</p>
+							<p
+								className="collectionsBoxDescription"
+								ref={(el) => {
+									boxTextRefs.current[index] = el;
+								}}
+							>
+								{box.description}
+							</p>
 						</div>
 					</div>
 				))}

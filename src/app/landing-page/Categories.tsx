@@ -1,4 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import SplitType from "split-type";
 
 import one from "../assets/categories/1.svg";
 import two from "../assets/categories/2.svg";
@@ -15,8 +21,9 @@ import twelve from "../assets/categories/12.svg";
 import thirteen from "../assets/categories/13.svg";
 import fourteen from "../assets/categories/14.svg";
 import fifteen from "../assets/categories/15.svg";
-
 import twoGirls from "../assets/2 girls.svg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Categories = () => {
 	const images = [
@@ -43,9 +50,80 @@ const Categories = () => {
 		images.slice(11, 15),
 	];
 
+	const headingRef = useRef<HTMLHeadingElement>(null);
+	const brownBoxTextRef = useRef<HTMLDivElement>(null);
+	const brownBoxImageRef = useRef<HTMLImageElement>(null);
+
+	useEffect(() => {
+		// heading animation
+		if (headingRef.current) {
+			const text = new SplitType(headingRef.current, {
+				types: "chars,words",
+			});
+
+			const tl = gsap.timeline();
+
+			tl.fromTo(
+				text.chars,
+				{ y: 40, opacity: 0 },
+				{
+					y: 0,
+					opacity: 1,
+					stagger: 1,
+					duration: 1,
+
+					scrollTrigger: {
+						trigger: headingRef.current,
+						start: "top 80%",
+						end: "top 50%",
+						scrub: 3,
+					},
+				}
+			);
+		}
+
+		// brown box text
+		if (brownBoxTextRef.current) {
+			gsap.fromTo(
+				brownBoxTextRef.current,
+				{ x: -550 },
+				{
+					x: 0,
+					transformOrigin: "center",
+					scrollTrigger: {
+						trigger: brownBoxTextRef.current,
+						start: "top 80%",
+						end: "top 50%",
+						scrub: 1.5,
+					},
+				}
+			);
+		}
+
+		// brown box image
+		if (brownBoxImageRef.current) {
+			gsap.fromTo(
+				brownBoxImageRef.current,
+				{ x: 550 },
+				{
+					x: 0,
+					transformOrigin: "center",
+					scrollTrigger: {
+						trigger: brownBoxImageRef.current,
+						start: "top 80%",
+						end: "top 50%",
+						scrub: 1.5,
+					},
+				}
+			);
+		}
+	}, []);
+
 	return (
 		<div className=" sectionPadding">
-			<h1 className=" sectionHeading">Free Afro booth images </h1>
+			<h1 className=" sectionHeading" ref={headingRef}>
+				Free Afro booth images{" "}
+			</h1>
 
 			<div>
 				<div className=" flex flex-row items-center justify-center gap-10 capitalize mb-8">
@@ -85,14 +163,14 @@ const Categories = () => {
 			</div>
 
 			<div
-				className=" bg-[#7B4B3A] rounded-4xl px-11 py-20 flex flex-row justify-between relative"
+				className=" bg-[#7B4B3A] rounded-4xl px-11 py-20 flex flex-row justify-between overflow-hidden relative"
 				style={{
 					backgroundImage: `url("/background image brown.svg")`,
 					backgroundSize: "cover",
 					backgroundPosition: "center",
 				}}
 			>
-				<div className=" w-[40%]">
+				<div className=" w-[40%]" ref={brownBoxTextRef}>
 					<p className=" text-white mb-8 capitalize text-5xl font-semibold">
 						invitation for African photographers to upload their work
 					</p>
@@ -106,6 +184,7 @@ const Categories = () => {
 					src={twoGirls}
 					alt="Two Girls"
 					className=" absolute bottom-0 right-0 h-[80%]"
+					ref={brownBoxImageRef}
 				/>
 			</div>
 		</div>
