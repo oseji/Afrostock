@@ -6,7 +6,7 @@ html {
 
 /* general */
 .sectionHeading {
-	@apply mb-6 text-5xl capitalize;
+	@apply mb-6 text-5xl capitalize overflow-hidden;
 }
 
 .sectionPadding {

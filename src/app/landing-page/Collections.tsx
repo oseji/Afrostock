@@ -1,37 +1,134 @@
+"use client";
+
 import Image from "next/image";
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import SplitType from "split-type";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Collections = () => {
+	const headingRef = useRef<HTMLHeadingElement>(null);
+	const subTextRef = useRef<HTMLParagraphElement>(null);
+	const bottomParagraphRef = useRef<HTMLParagraphElement>(null);
+
 	const boxContent = [
 		{
 			image: "/people.svg",
 			title: "People",
 			description:
-				"Portraits, everyday life shots, traditional & modern attire.",
+				"Capturing portraits, emotions, and human connections across different walks of life.",
 		},
 		{
 			image: "/lifestyle.svg",
 			title: "Lifestyle",
 			description:
-				"Portraits, everyday life shots, traditional & modern attire.",
+				"Showcasing everyday moments, leisure, work, fashion, and modern living styles.",
 		},
 		{
 			image: "/art.svg",
 			title: "Art",
 			description:
-				"Portraits, everyday life shots, traditional & modern attire.",
+				"Highlighting creativity through paintings, sculptures, digital designs, and visual expression.",
 		},
 		{
 			image: "/culture.svg",
 			title: "Culture",
 			description:
-				"Portraits, everyday life shots, traditional & modern attire.",
+				"Exploring traditions, festivals, heritage, and the diverse identities of communities.",
 		},
 	];
 
+	useEffect(() => {
+		// heading animation
+		if (headingRef.current) {
+			const text = new SplitType(headingRef.current, {
+				types: "chars,words",
+			});
+
+			const tl = gsap.timeline();
+
+			tl.fromTo(
+				text.chars,
+				{ y: 40, opacity: 0 },
+				{
+					y: 0,
+					opacity: 1,
+					stagger: 1,
+					duration: 1,
+
+					scrollTrigger: {
+						trigger: headingRef.current,
+						start: "top 80%",
+						end: "top 50%",
+						scrub: 3,
+					},
+				}
+			);
+		}
+
+		// subtext animation
+		if (subTextRef.current) {
+			const text = new SplitType(subTextRef.current, {
+				types: "chars,words",
+			});
+
+			const tl = gsap.timeline();
+
+			tl.fromTo(
+				text.chars,
+				{ y: 40, opacity: 0 },
+				{
+					y: 0,
+					opacity: 1,
+					stagger: 1,
+					duration: 1,
+
+					scrollTrigger: {
+						trigger: subTextRef.current,
+						start: "top 80%",
+						end: "top 50%",
+						scrub: 3,
+					},
+				}
+			);
+		}
+
+		// bottom paragraph text
+		if (bottomParagraphRef.current) {
+			const text = new SplitType(bottomParagraphRef.current, {
+				types: "chars,words",
+			});
+
+			const tl = gsap.timeline();
+
+			tl.fromTo(
+				text.chars,
+				{ color: "#b8b8b8" },
+				{
+					color: "#000000",
+					stagger: 1,
+					duration: 1,
+
+					scrollTrigger: {
+						trigger: bottomParagraphRef.current,
+						start: "top 80%",
+						end: "top 50%",
+						scrub: 3,
+					},
+				}
+			);
+		}
+	}, []);
+
 	return (
 		<section className=" bg-[#FFFBF0] sectionPadding">
-			<h1 className=" sectionHeading">Our Unique Collection</h1>
-			<p className=" mb-8">
+			<h1 className=" sectionHeading" ref={headingRef}>
+				Our Unique Collection
+			</h1>
+
+			<p className=" mb-8 overflow-hidden" ref={subTextRef}>
 				Celebrate the beauty, diversity, and stories of Africa through
 				authentic, high-quality images.
 			</p>
@@ -63,12 +160,13 @@ const Collections = () => {
 				))}
 			</div>
 
-			<p className=" text-center font-medium text-5xl mt-20 w-[90%] mx-auto capitalize">
-				Discover the beauty and diversity of Africa through authentic,{" "}
-				<span className=" text-[#999997]">
-					high-quality photography. From vibrant city life to serene landscapes,
-					our images tell the real stories of the continent
-				</span>
+			<p
+				className=" text-center font-medium text-5xl mt-20 w-[90%] mx-auto capitalize text-[#b8b8b8]"
+				ref={bottomParagraphRef}
+			>
+				Discover the beauty and diversity of Africa through authentic,
+				high-quality photography. From vibrant city life to serene landscapes,
+				our images tell the real stories of the continent
 			</p>
 		</section>
 	);
