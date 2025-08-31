@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useEffect } from "react";
+import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import SplitType from "split-type";
@@ -43,7 +43,6 @@ const Categories = () => {
 		fourteen,
 		fifteen,
 	];
-
 	const chunkedImages = [
 		images.slice(0, 5),
 		images.slice(5, 11),
@@ -54,84 +53,91 @@ const Categories = () => {
 	const brownBoxTextRef = useRef<HTMLDivElement>(null);
 	const brownBoxImageRef = useRef<HTMLImageElement>(null);
 
-	useEffect(() => {
-		// heading animation
-		if (headingRef.current) {
-			const text = new SplitType(headingRef.current, {
-				types: "chars,words",
-			});
+	useLayoutEffect(() => {
+		const ctx = gsap.context(() => {
+			// heading animation
+			if (headingRef.current) {
+				const text = new SplitType(headingRef.current, {
+					types: "chars,words",
+				});
 
-			const tl = gsap.timeline();
+				gsap.fromTo(
+					text.chars,
+					{ y: 40, opacity: 0 },
+					{
+						y: 0,
+						opacity: 1,
+						stagger: 1,
+						duration: 1,
+						scrollTrigger: {
+							trigger: headingRef.current,
+							start: "top 80%",
+							end: "top 50%",
+							scrub: 3,
+							invalidateOnRefresh: true,
+						},
+					}
+				);
+			}
 
-			tl.fromTo(
-				text.chars,
-				{ y: 40, opacity: 0 },
-				{
-					y: 0,
-					opacity: 1,
-					stagger: 1,
-					duration: 1,
+			// brown box text
+			if (brownBoxTextRef.current) {
+				gsap.fromTo(
+					brownBoxTextRef.current,
+					{ x: -550 },
+					{
+						x: 0,
+						scrollTrigger: {
+							trigger: brownBoxTextRef.current,
+							start: "top 80%",
+							end: "top 45%",
+							scrub: 1.5,
+							invalidateOnRefresh: true,
+						},
+					}
+				);
+			}
 
-					scrollTrigger: {
-						trigger: headingRef.current,
-						start: "top 80%",
-						end: "top 50%",
-						scrub: 3,
-					},
-				}
-			);
-		}
+			// brown box image
+			if (brownBoxImageRef.current) {
+				gsap.fromTo(
+					brownBoxImageRef.current,
+					{ x: 550 },
+					{
+						x: 0,
+						scrollTrigger: {
+							trigger: brownBoxImageRef.current,
+							start: "top 80%",
+							end: "top 45%",
+							scrub: 1.5,
+							invalidateOnRefresh: true,
+						},
+					}
+				);
+			}
+		});
 
-		// brown box text
-		if (brownBoxTextRef.current) {
-			gsap.fromTo(
-				brownBoxTextRef.current,
-				{ x: -550 },
-				{
-					x: 0,
-					transformOrigin: "center",
-					scrollTrigger: {
-						trigger: brownBoxTextRef.current,
-						start: "top 90%",
-						end: "top 50%",
-						scrub: 1.5,
-						markers: true,
-						invalidateOnRefresh: true,
-					},
-				}
-			);
-		}
+		// ✅ Refresh AFTER images/fonts load (fixes prod issues)
+		const refresh = () => ScrollTrigger.refresh();
+		window.addEventListener("load", refresh);
+		document.fonts?.ready?.then(refresh);
 
-		// brown box image
-		if (brownBoxImageRef.current) {
-			gsap.fromTo(
-				brownBoxImageRef.current,
-				{ x: 550 },
-				{
-					x: 0,
-					transformOrigin: "center",
-					scrollTrigger: {
-						trigger: brownBoxImageRef.current,
-						start: "top 90%",
-						end: "top 50%",
-						scrub: 1.5,
-						markers: true,
-						invalidateOnRefresh: true,
-					},
-				}
-			);
-		}
+		return () => {
+			window.removeEventListener("load", refresh);
+			ctx.revert();
+		};
 	}, []);
 
 	return (
-		<div className=" sectionPadding">
-			<h1 className=" sectionHeading" ref={headingRef}>
+		<div className="sectionPadding">
+			<h1 className="sectionHeading" ref={headingRef}>
 				Free Afro booth images{" "}
 			</h1>
 
+			{/* categories */}
 			<div>
-				<div className=" flex flex-row items-center justify-center gap-10 capitalize mb-8">
-					<span className=" categoryFilter bg-[#7B4B3A] text-white">
+				<div className="flex flex-row items-center justify-center gap-10 capitalize mb-8">
+					<span className="categoryFilter bg-[#7B4B3A] text-white">
 						lifestyle
 					</span>
 					<span className="categoryFilter">Technology</span>
@@ -145,6 +151,7 @@ const Categories = () => {
 				</div>
 			</div>
 
+			{/* images grid */}
 			<div className="grid grid-cols-3 gap-6 mt-8 mb-16">
 				{chunkedImages.map((column, colIdx) => (
 					<div key={colIdx} className="flex flex-col gap-6">
@@ -159,6 +166,7 @@ const Categories = () => {
 									width={500}
 									height={700}
 									className="w-full h-auto object-cover transition duration-500 ease-in-out hover:scale-110"
+									onLoad={() => ScrollTrigger.refresh()}
 								/>
 							</div>
 						))}
@@ -166,20 +174,21 @@ const Categories = () => {
 				))}
 			</div>
 
+			{/* brown box */}
 			<div
-				className=" bg-[#7B4B3A] rounded-4xl px-11 py-20 flex flex-row justify-between overflow-hidden relative"
+				className="bg-[#7B4B3A] rounded-4xl px-11 py-20 flex flex-row justify-between overflow-hidden relative"
 				style={{
 					backgroundImage: `url("/background image brown.svg")`,
 					backgroundSize: "cover",
 					backgroundPosition: "center",
 				}}
 			>
-				<div className=" w-[40%]" ref={brownBoxTextRef}>
-					<p className=" text-white mb-8 capitalize text-5xl font-semibold">
+				<div className="w-[40%]" ref={brownBoxTextRef}>
+					<p className="text-white mb-8 capitalize text-5xl font-semibold">
 						invitation for African photographers to upload their work
 					</p>
 
-					<button className=" bg-white rounded-4xl px-6 py-2 text-black font-semibold capitalize cursor-pointer hover:scale-110 transition ease-in-out duration-500">
+					<button className="bg-white rounded-4xl px-6 py-2 text-black font-semibold capitalize cursor-pointer hover:scale-110 transition ease-in-out duration-500">
 						Join as a Creator
 					</button>
 				</div>
@@ -187,8 +196,9 @@ const Categories = () => {
 				<Image
 					src={twoGirls}
 					alt="Two Girls"
-					className=" absolute bottom-0 right-0 h-[80%]"
+					className="absolute bottom-0 right-0 h-[80%]"
 					ref={brownBoxImageRef}
+					onLoad={() => ScrollTrigger.refresh()}
 				/>
 			</div>
 		</div>
