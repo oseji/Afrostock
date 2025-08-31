@@ -92,7 +92,7 @@ const Categories = () => {
 					transformOrigin: "center",
 					scrollTrigger: {
 						trigger: brownBoxTextRef.current,
-						start: "top 80%",
+						start: "top 90%",
 						end: "top 50%",
 						scrub: 1.5,
 					},
@@ -110,7 +110,7 @@ const Categories = () => {
 					transformOrigin: "center",
 					scrollTrigger: {
 						trigger: brownBoxImageRef.current,
-						start: "top 80%",
+						start: "top 90%",
 						end: "top 50%",
 						scrub: 1.5,
 					},
