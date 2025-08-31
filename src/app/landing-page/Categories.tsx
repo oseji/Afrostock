@@ -95,6 +95,8 @@ const Categories = () => {
 						start: "top 90%",
 						end: "top 50%",
 						scrub: 1.5,
+						markers: true,
+						invalidateOnRefresh: true,
 					},
 				}
 			);
@@ -113,6 +115,8 @@ const Categories = () => {
 						start: "top 90%",
 						end: "top 50%",
 						scrub: 1.5,
+						markers: true,
+						invalidateOnRefresh: true,
 					},
 				}
 			);
