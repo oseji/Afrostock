@@ -174,19 +174,19 @@ const Categories = () => {
 
 			{/* brown box */}
 			<div
-				className="bg-[#7B4B3A] rounded-4xl px-11 py-20 flex flex-row justify-between overflow-hidden relative"
+				className="bg-[#7B4B3A] rounded-4xl px-5 md:px-11 py-10 md:py-20 flex flex-row justify-between overflow-hidden relative"
 				style={{
 					backgroundImage: `url("/background image brown.svg")`,
 					backgroundSize: "cover",
 					backgroundPosition: "center",
 				}}
 			>
-				<div className="w-[40%]" ref={brownBoxTextRef}>
-					<p className="text-white mb-8 capitalize text-5xl font-semibold">
+				<div className=" w-full md:w-[40%]" ref={brownBoxTextRef}>
+					<p className="text-white text-center md:text-start mb-8 capitalize text-2xl md:text-4xl lg:text-5xl font-semibold">
 						invitation for African photographers to upload their work
 					</p>
 
-					<button className="bg-white rounded-4xl px-6 py-2 text-black font-semibold capitalize cursor-pointer hover:scale-110 transition ease-in-out duration-500">
+					<button className="bg-white  rounded-4xl mx-auto md:mx-0 block px-6 py-2 text-black font-semibold capitalize cursor-pointer hover:scale-110 transition ease-in-out duration-500">
 						Join as a Creator
 					</button>
 				</div>
@@ -194,7 +194,7 @@ const Categories = () => {
 				<Image
 					src={twoGirls}
 					alt="Two Girls"
-					className="absolute bottom-0 right-0 h-[80%]"
+					className="md:absolute md:block bottom-0 right-0 h-[80%] hidden"
 					ref={brownBoxImageRef}
 					onLoad={() => ScrollTrigger.refresh()}
 				/>

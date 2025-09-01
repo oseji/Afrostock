@@ -10,7 +10,7 @@ const HeroSection = () => {
 		<div
 			style={{
 				backgroundImage: 'url("heroBg.svg")',
-				height: "100vh",
+				minHeight: "100vh",
 				backgroundSize: "cover",
 			}}
 			className=" relative"
@@ -29,7 +29,7 @@ const HeroSection = () => {
 						get Stock images that reflect Africa’s true beauty and diversity.
 					</p>
 
-					<div className=" flex flex-row items-center justify-between gap-6  bg-white p-4 rounded-xl w-[90%]">
+					<div className=" flex flex-row items-center justify-between gap-6  bg-white p-4 rounded-xl w-full md:w-[90%]">
 						<input
 							type="text"
 							name="searchBar"

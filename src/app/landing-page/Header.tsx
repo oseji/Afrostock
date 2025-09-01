@@ -1,12 +1,70 @@
+"use client";
+import { useRef, useState } from "react";
+
 import Image from "next/image";
 import logo from "../assets/logo.svg";
 
 const Header = () => {
-	return (
-		<header className=" flex flex-row justify-between items-center font-semibold px-5 md:px-10 xl:px-24 py-4 bg-transparent">
-			<Image src={logo} alt="Afrostock Logo" />
+	const menuLineRefs = useRef<(HTMLSpanElement | null)[]>([]);
+	const navRef = useRef<HTMLElement | null>(null);
+	const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
 
-			<nav className=" flex flex-row items-center gap-10">
+	const toggleMenu = () => {
+		const navbar = navRef.current;
+		navbar?.classList.toggle("hideNav");
+
+		setIsMenuToggled(!isMenuToggled);
+
+		if (!isMenuToggled) {
+			menuLineRefs.current[0]?.classList.add("-rotate-45");
+			menuLineRefs.current[0]?.classList.remove("top-[10%]");
+
+			menuLineRefs.current[1]?.classList.add("hidden");
+
+			menuLineRefs.current[2]?.classList.add("rotate-45");
+			menuLineRefs.current[2]?.classList.remove("top-[90%]");
+		} else {
+			menuLineRefs.current[0]?.classList.remove("-rotate-45");
+			menuLineRefs.current[0]?.classList.add("top-[10%]");
+
+			menuLineRefs.current[1]?.classList.remove("hidden");
+
+			menuLineRefs.current[2]?.classList.remove("rotate-45");
+			menuLineRefs.current[2]?.classList.add("top-[90%]");
+		}
+	};
+
+	return (
+		<header className=" flex flex-col md:flex-row justify-between md:items-center font-semibold px-0 md:px-10 xl:px-24 py-0 md:py-5 bg-transparent">
+			<div className=" w-full md:w-auto bg-white md:bg-transparent p-5 md:p-0 flex flex-row justify-between items-center z-50">
+				<Image src={logo} alt="Afrostock Logo" />
+
+				<div className="menuContainer" onClick={toggleMenu}>
+					<span
+						className="top-[10%] w-full "
+						ref={(el) => {
+							menuLineRefs.current[0] = el;
+						}}
+					></span>
+					<span
+						className="top-1/2 w-[60%] "
+						ref={(el) => {
+							menuLineRefs.current[1] = el;
+						}}
+					></span>
+					<span
+						className="top-[90%] w-full "
+						ref={(el) => {
+							menuLineRefs.current[2] = el;
+						}}
+					></span>
+				</div>
+			</div>
+
+			<nav
+				className=" flex flex-col md:flex-row items-center gap-10 bg-white md:bg-transparent py-10 md:py-0 transition ease-in-out duration-500 w-full md:w-auto hideNav z-40"
+				ref={navRef}
+			>
 				<span className=" navText">Explore</span>
 				<span className=" navText">about us</span>
 				<span className=" navText">sign in</span>

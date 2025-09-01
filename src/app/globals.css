@@ -4,6 +4,10 @@ html {
 	@apply scroll-smooth;
 }
 
+body {
+	@apply overflow-x-hidden;
+}
+
 /* general */
 .sectionHeading {
 	@apply mb-6 text-center lg:text-start text-2xl md:text-3xl xl:text-5xl uppercase overflow-hidden;
@@ -16,6 +20,18 @@ html {
 /* header */
 .navText {
 	@apply capitalize cursor-pointer hover:scale-110 hover:text-[#7B4B3A] transition ease-in-out duration-500;
+}
+
+.hideNav {
+	@apply absolute lg:relative -translate-y-96 lg:-translate-y-0 pointer-events-none;
+}
+
+.menuContainer {
+	@apply w-8 h-6 lg:hidden relative flex flex-col justify-center;
+}
+
+.menuContainer span {
+	@apply bg-[#7B4B3A] p-0.5   absolute  transition ease-in-out duration-300 rounded-lg;
 }
 
 /* collections */
