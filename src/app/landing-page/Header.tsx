@@ -3,7 +3,7 @@ import logo from "../assets/logo.svg";
 
 const Header = () => {
 	return (
-		<header className=" flex flex-row justify-between items-center font-semibold px-24 py-4 bg-transparent">
+		<header className=" flex flex-row justify-between items-center font-semibold px-5 md:px-10 xl:px-24 py-4 bg-transparent">
 			<Image src={logo} alt="Afrostock Logo" />
 
 			<nav className=" flex flex-row items-center gap-10">

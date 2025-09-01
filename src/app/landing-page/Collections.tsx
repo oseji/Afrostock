@@ -21,24 +21,28 @@ const Collections = () => {
 			title: "People",
 			description:
 				"Capturing portraits, emotions, and human connections across different walks of life.",
+			id: 1,
 		},
 		{
 			image: "/lifestyle.svg",
 			title: "Lifestyle",
 			description:
 				"Showcasing everyday moments, leisure, work, fashion, and modern living styles.",
+			id: 2,
 		},
 		{
 			image: "/art.svg",
 			title: "Art",
 			description:
 				"Highlighting creativity through paintings, sculptures, digital designs, and visual expression.",
+			id: 3,
 		},
 		{
 			image: "/culture.svg",
 			title: "Culture",
 			description:
 				"Exploring traditions, festivals, heritage, and the diverse identities of communities.",
+			id: 4,
 		},
 	];
 
@@ -135,8 +139,8 @@ const Collections = () => {
 							transformOrigin: "center",
 							scrollTrigger: {
 								trigger: ref,
-								start: "top bottom",
-								end: "top 80%",
+								start: "top 95%",
+								end: "top 90%",
 								scrub: 1.5,
 							},
 						}
@@ -157,8 +161,8 @@ const Collections = () => {
 							transformOrigin: "center",
 							scrollTrigger: {
 								trigger: ref,
-								start: "top bottom",
-								end: "top 80%",
+								start: "top 95%",
+								end: "top 90%",
 								scrub: 1.5,
 							},
 						}
@@ -179,11 +183,11 @@ const Collections = () => {
 				authentic, high-quality images.
 			</p>
 
-			<div className=" flex flex-row items-center justify-center gap-10">
-				{boxContent.map((box, index) => (
+			<div className=" flex  flex-col xl:flex xl:flex-row md:grid md:grid-cols-[auto_auto] items-center justify-center gap-10">
+				{boxContent.map((box) => (
 					<div
-						className="collectionsBox relative overflow-hidden rounded-4xl group cursor-pointer"
-						key={index}
+						className="collectionsBox relative overflow-hidden rounded-4xl group cursor-pointer mx-auto xl:mx-0"
+						key={box.id}
 					>
 						{/* Background Image */}
 						<Image
@@ -201,7 +205,7 @@ const Collections = () => {
 							<h1
 								className="collectionsBoxHeading"
 								ref={(el) => {
-									boxHeadingRefs.current[index] = el;
+									boxHeadingRefs.current[box.id] = el;
 								}}
 							>
 								{box.title}
@@ -210,7 +214,7 @@ const Collections = () => {
 							<p
 								className="collectionsBoxDescription"
 								ref={(el) => {
-									boxTextRefs.current[index] = el;
+									boxTextRefs.current[box.id] = el;
 								}}
 							>
 								{box.description}
@@ -221,7 +225,7 @@ const Collections = () => {
 			</div>
 
 			<p
-				className=" text-center font-medium text-5xl mt-20 w-[90%] mx-auto capitalize text-[#b8b8b8]"
+				className=" text-center font-medium text-2xl md:text-3xl lg:text-4xl xl:text-5xl mt-20 w-[90%] mx-auto capitalize text-[#b8b8b8]"
 				ref={bottomParagraphRef}
 			>
 				Discover the beauty and diversity of Africa through authentic,

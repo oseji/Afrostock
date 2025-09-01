@@ -6,7 +6,7 @@ import socialMediaIcons from "../assets/social media.svg";
 const Footer = () => {
 	return (
 		<footer className=" flex flex-col bg-[#FFFBF0]">
-			<div className=" flex flex-col md:flex-row  md:items-start md:justify-between sectionPadding">
+			<div className=" flex flex-col xl:flex-row gap-10 xl:gap-0  md:items-start md:justify-between sectionPadding">
 				<div className=" xl:w-[30%] flex flex-col gap-6">
 					<Image src={footerIcon} alt="Footer Icon" />
 
@@ -19,8 +19,8 @@ const Footer = () => {
 					<Image src={socialMediaIcons} alt="Social Media Icons" />
 				</div>
 
-				<div className=" flex flex-col gap-6">
-					<div className=" flex flex-row items-start gap-6">
+				<div className="  w-full xl:w-auto flex flex-col gap-6">
+					<div className=" w-full xl:w-auto flex-wrap flex flex-row justify-between xl:justify-start items-start gap-6">
 						<div className="footerColumn">
 							<h1 className="footerColumnHeading">About Us</h1>
 							<p className="footerColumnItem">Our Story</p>
@@ -54,7 +54,7 @@ const Footer = () => {
 						</div>
 					</div>
 
-					<button className=" w-fit ml-auto mt-10 cursor-pointer rounded-4xl px-6 py-2 border-[#7B4B3A] border-2 flex flex-row items-center gap-2 justify-center capitalize font-semibold text-[#7B4B3A] transition ease-in-out duration-500 hover:scale-105">
+					<button className=" w-fit mx-auto lg:mx-0 lg:ml-auto mt-10 cursor-pointer rounded-4xl px-6 py-2 border-[#7B4B3A] border-2 flex flex-row items-center gap-2 justify-center capitalize font-semibold text-[#7B4B3A] transition ease-in-out duration-500 hover:scale-105">
 						<Image src={upArrow} alt="Up Arrow" />
 
 						<span>back to the top</span>

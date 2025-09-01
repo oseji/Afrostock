@@ -117,7 +117,7 @@ const Categories = () => {
 			}
 		});
 
-		// ✅ Refresh AFTER images/fonts load (fixes prod issues)
+		// Refresh AFTER images/fonts load
 		const refresh = () => ScrollTrigger.refresh();
 		window.addEventListener("load", refresh);
 		document.fonts?.ready?.then(refresh);
@@ -136,10 +136,8 @@ const Categories = () => {
 
 			{/* categories */}
 			<div>
-				<div className="flex flex-row items-center justify-center gap-10 capitalize mb-8">
-					<span className="categoryFilter bg-[#7B4B3A] text-white">
-						lifestyle
-					</span>
+				<div className="flex flex-wrap flex-row items-center justify-center gap-3 md:gap-5 xl:gap-10 capitalize mb-8">
+					<span className="activeCategory">lifestyle</span>
 					<span className="categoryFilter">Technology</span>
 					<span className="categoryFilter">Health</span>
 					<span className="categoryFilter">Business</span>

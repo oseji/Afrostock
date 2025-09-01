@@ -19,7 +19,7 @@ const HeroSection = () => {
 
 			<section className=" absolute top-1/2 -translate-y-1/2 sectionPadding">
 				<div className=" w-full md:w-[600px] flex flex-col gap-8">
-					<h1 className=" font-semibold capitalize text-6xl text-white">
+					<h1 className=" font-semibold capitalize text-5xl md:text-6xl text-white">
 						Search authentic <span className=" text-[#7B4B3A]">African</span>{" "}
 						images
 					</h1>
