@@ -194,7 +194,7 @@ const Categories = () => {
 				<Image
 					src={twoGirls}
 					alt="Two Girls"
-					className="md:absolute md:block bottom-0 right-0 h-[80%] hidden"
+					className="md:absolute md:block bottom-0  md:-right-5 xl:right-0 h-[50%] xl:h-[80%] hidden"
 					ref={brownBoxImageRef}
 					onLoad={() => ScrollTrigger.refresh()}
 				/>

@@ -23,11 +23,11 @@ body {
 }
 
 .hideNav {
-	@apply absolute lg:relative -translate-y-96 lg:-translate-y-0 pointer-events-none;
+	@apply absolute md:relative -translate-y-96 md:-translate-y-0 pointer-events-none;
 }
 
 .menuContainer {
-	@apply w-8 h-6 lg:hidden relative flex flex-col justify-center;
+	@apply w-8 h-6 md:hidden relative flex flex-col justify-center;
 }
 
 .menuContainer span {
