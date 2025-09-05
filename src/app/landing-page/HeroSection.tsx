@@ -17,7 +17,7 @@ const HeroSection = () => {
 		>
 			<Header />
 
-			<section className=" absolute top-1/2 -translate-y-1/2 sectionPadding">
+			<section className=" absolute top-1/2 -translate-y-1/2 sectionPadding z-0">
 				<div className=" w-full md:w-[600px] flex flex-col gap-8">
 					<h1 className=" font-semibold capitalize text-5xl md:text-6xl text-white">
 						Search authentic <span className=" text-[#7B4B3A]">African</span>{" "}

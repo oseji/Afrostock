@@ -74,7 +74,6 @@ const Categories = () => {
 							start: "top 80%",
 							end: "top 50%",
 							scrub: 3,
-							invalidateOnRefresh: true,
 						},
 					}
 				);
